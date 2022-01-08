@@ -13,5 +13,6 @@
     .likes-count {
         display: flex;
         gap: .2rem;
+        cursor: pointer;
     }
 </style>

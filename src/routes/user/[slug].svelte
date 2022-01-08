@@ -5,19 +5,34 @@
 	import UserDetails from '$lib/UserDetails.svelte';
 	import UserInfo from '$lib/UserInfo.svelte';
 	import ContactForm from '$lib/ContactForm.svelte';
+	import LightBox from '$lib/LightBox.svelte';
 
 	let mediaList = data.media.filter((media) => media.photographerId == $page.params.slug);
 	let user = data.photographers.filter((user) => user.id == $page.params.slug)[0];
 	let totalLikes = mediaList.map((media) => media.likes).reduce((prev, current) => prev + current);
 
-	let isContactFormOpen = false;
 
-	function toggleContactForm() {
-		isContactFormOpen = isContactFormOpen ? false : true;
+	let isContactFormOpen = false,
+		isLightBoxOpen = false,
+		postId
+
+	const toggleContactForm = () => {
+		isContactFormOpen = !isContactFormOpen;
+	};
+
+	const toggleLightBox = () => {
+		isLightBoxOpen = !isLightBoxOpen;
+	};
+
+	const setPostId = (media) => {
+		postId = media.id
 	}
 </script>
 
 <main>
+	{#if isLightBoxOpen}
+		<LightBox {mediaList} {toggleLightBox} {postId}/>
+	{/if}
 	{#if isContactFormOpen}
 		<div class="form-container" on:click={toggleContactForm}>
 			<ContactForm {user} />
@@ -29,7 +44,7 @@
 	</div>
 	<section class="media-grid">
 		{#each mediaList as media}
-			<UserPost {media}/>
+			<UserPost {media} {toggleLightBox} {setPostId}/>
 		{/each}
 	</section>
 	<UserInfo likeCount={totalLikes} price={user.price} />
@@ -62,5 +77,6 @@
 	}
 	.sorting {
 		display: flex;
+		margin-bottom: 1rem;
 	}
 </style>
