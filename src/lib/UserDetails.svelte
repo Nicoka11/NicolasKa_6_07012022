@@ -1,10 +1,6 @@
 <script>
     import CtaButton from '$lib/CtaButton.svelte'
-	export let user;
-
-    function buttonCtaClick (e) {
-        console.log(user)
-    }
+	export let user, ctaClickHandler;
 </script>
 
 <div class="user-details">
@@ -13,7 +9,7 @@
 		<p class="location">{`${user.city}, ${user.country}`}</p>
 		<p class="tagline">{user.tagline}</p>
 	</div>
-    <CtaButton value="Contactez-moi" clickHandler={buttonCtaClick}/>
+    <CtaButton value="Contactez-moi" clickHandler={ctaClickHandler}/>
     <div class="image">
         <img src={`../../static/id/${user.portrait}`} alt={`${user.name} profile picture`}>
     </div>

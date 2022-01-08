@@ -5,7 +5,7 @@
 
 <div class="post">
 	<div class="content" on:click={e => console.log(e.target)}>
-		<img src={`../static/content/${media.image}`} alt={media.title} />
+		<img src={`../static/content/${media.image}`} alt={media.title} loading="lazy"/>
 	</div>
 	<div class="info">
 		<p>{media.title}</p>
