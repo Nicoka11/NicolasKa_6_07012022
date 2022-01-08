@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
-	import * as data from '../../../static/photographers.json';
-	import Photo from '$lib/Photo.svelte';
+	import * as data from '/static/photographers.json';
+	import UserPost from '$lib/UserPost.svelte';
 	import UserDetails from '$lib/UserDetails.svelte';
 	import UserInfo from '$lib/UserInfo.svelte';
 	import ContactForm from '$lib/ContactForm.svelte';
@@ -29,7 +29,7 @@
 	</div>
 	<section class="media-grid">
 		{#each mediaList as media}
-			<Photo {media}/>
+			<UserPost {media}/>
 		{/each}
 	</section>
 	<UserInfo likeCount={totalLikes} price={user.price} />

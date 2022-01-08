@@ -6,7 +6,7 @@
 	<article>
 		<div class="image">
 			<img
-				src={`../../static/id/${user.portrait}`}
+				src={`/id/${user.portrait}`}
 				alt={`${user.name} profile picture`}
 				loading="lazy"
 			/>
