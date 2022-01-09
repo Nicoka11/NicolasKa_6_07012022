@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import * as data from '/static/photographers.json';
+	import Sorting from '$lib/Sorting.svelte';
 	import UserPost from '$lib/UserPost.svelte';
 	import UserDetails from '$lib/UserDetails.svelte';
 	import UserInfo from '$lib/UserInfo.svelte';
@@ -11,10 +12,9 @@
 	let user = data.photographers.filter((user) => user.id == $page.params.slug)[0];
 	let totalLikes = mediaList.map((media) => media.likes).reduce((prev, current) => prev + current);
 
-
 	let isContactFormOpen = false,
 		isLightBoxOpen = false,
-		postId
+		postId;
 
 	const toggleContactForm = () => {
 		isContactFormOpen = !isContactFormOpen;
@@ -25,13 +25,30 @@
 	};
 
 	const setPostId = (media) => {
-		postId = media.id
-	}
+		postId = media.id;
+	};
+
+	//Sorting
+	const sortMedia = (option) => {
+		switch (option) {
+			case 'popularity':
+				mediaList.sort((mediaA, mediaB) => mediaB.likes - mediaA.likes);
+				break;
+			case 'date':
+				mediaList.sort(
+					(mediaA, mediaB) => new Date(mediaA.date).getTime() - new Date(mediaB.date).getTime()
+				);
+				break;
+			case 'title':
+				mediaList.sort((mediaA, mediaB) => mediaA.title.localeCompare(mediaB.title));
+				break;
+		}
+	};
 </script>
 
 <main>
 	{#if isLightBoxOpen}
-		<LightBox {mediaList} {toggleLightBox} {postId}/>
+		<LightBox {mediaList} {toggleLightBox} {postId} />
 	{/if}
 	{#if isContactFormOpen}
 		<div class="form-container" on:click={toggleContactForm}>
@@ -41,10 +58,11 @@
 	<UserDetails {user} ctaClickHandler={toggleContactForm} />
 	<div class="sorting">
 		<p>Trier par</p>
+		<Sorting {sortMedia}/>
 	</div>
 	<section class="media-grid">
 		{#each mediaList as media}
-			<UserPost {media} {toggleLightBox} {setPostId}/>
+			<UserPost {media} {toggleLightBox} {setPostId} />
 		{/each}
 	</section>
 	<UserInfo likeCount={totalLikes} price={user.price} />

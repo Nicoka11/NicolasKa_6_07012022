@@ -100,7 +100,7 @@
 		transition: all 0.6s cubic-bezier(0.16, 0.94, 0.57, 0.99);
 
 		.img-container {
-			height: 100%;
+			height: 97%;
 			width: fit-content;
 			margin: 0 auto;
 		}
@@ -109,6 +109,7 @@
 			height: 100%;
 			width: 100%;
 			object-fit: contain;
+			border-radius: 5px;
 		}
 
 		.img-title {
