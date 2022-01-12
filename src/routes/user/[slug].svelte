@@ -1,16 +1,16 @@
 <script>
 	import { page } from '$app/stores';
-	import * as data from '/static/photographers.json';
+	import { data, userMedia } from '../../store';
 	import Sorting from '$lib/Sorting.svelte';
-	import UserPost from '$lib/UserPost.svelte';
 	import UserDetails from '$lib/UserDetails.svelte';
 	import UserInfo from '$lib/UserInfo.svelte';
 	import ContactForm from '$lib/ContactForm.svelte';
 	import LightBox from '$lib/LightBox.svelte';
+	import UserPostGrid from '$lib/UserPostGrid.svelte';
 
-	let mediaList = data.media.filter((media) => media.photographerId == $page.params.slug);
-	let user = data.photographers.filter((user) => user.id == $page.params.slug)[0];
-	let totalLikes = mediaList.map((media) => media.likes).reduce((prev, current) => prev + current);
+	userMedia.set($data.media.filter((media) => media.photographerId == $page.params.slug));
+	let user = $data.photographers.filter((user) => user.id == $page.params.slug)[0];
+	let totalLikes = $userMedia.map((media) => media.likes).reduce((prev, current) => prev + current);
 
 	let isContactFormOpen = false,
 		isLightBoxOpen = false,
@@ -27,44 +27,23 @@
 	const setPostId = (media) => {
 		postId = media.id;
 	};
-
-	//Sorting
-	const sortMedia = (option) => {
-		switch (option) {
-			case 'popularity':
-				mediaList.sort((mediaA, mediaB) => mediaB.likes - mediaA.likes);
-				break;
-			case 'date':
-				mediaList.sort(
-					(mediaA, mediaB) => new Date(mediaA.date).getTime() - new Date(mediaB.date).getTime()
-				);
-				break;
-			case 'title':
-				mediaList.sort((mediaA, mediaB) => mediaA.title.localeCompare(mediaB.title));
-				break;
-		}
-	};
 </script>
 
 <main>
 	{#if isLightBoxOpen}
-		<LightBox {mediaList} {toggleLightBox} {postId} />
+		<LightBox {toggleLightBox} {postId} />
 	{/if}
 	{#if isContactFormOpen}
 		<div class="form-container" on:click={toggleContactForm}>
-			<ContactForm {user} />
+			<ContactForm {user} {toggleContactForm} />
 		</div>
 	{/if}
 	<UserDetails {user} ctaClickHandler={toggleContactForm} />
 	<div class="sorting">
 		<p>Trier par</p>
-		<Sorting {sortMedia}/>
+		<Sorting />
 	</div>
-	<section class="media-grid">
-		{#each mediaList as media}
-			<UserPost {media} {toggleLightBox} {setPostId} />
-		{/each}
-	</section>
+	<UserPostGrid {toggleLightBox} {setPostId} />
 	<UserInfo likeCount={totalLikes} price={user.price} />
 </main>
 
@@ -85,14 +64,7 @@
 		width: min-content;
 		margin: 0 auto;
 	}
-	.media-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		column-gap: 4rem;
-		row-gap: 2.5rem;
-		margin: 0 auto 5rem;
-		width: fit-content;
-	}
+
 	.sorting {
 		display: flex;
 		margin-bottom: 1rem;

@@ -1,6 +1,6 @@
 <script>
 	import InputText from './InputText.svelte';
-	export let user;
+	export let user, toggleContactForm;
 
 	const formSubmit = () => {
 		console.log(formData);
@@ -15,7 +15,12 @@
 </script>
 
 <div class="form" on:click|stopPropagation={() => {}}>
-	<h1>Contactez-moi<br />{user.name}</h1>
+    <div class="container-top">
+        <h1>Contactez-moi<br />{user.name}</h1>
+        <button class="btn-close" on:click={toggleContactForm}>
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
 	<form on:submit|preventDefault={formSubmit}>
 		<InputText label="Prénom" name="firstName" bind:value={formData.firstName} />
 		<InputText label="Nom" name="lastName" bind:value={formData.lastName} />
@@ -53,4 +58,25 @@
 			background-color: var(--c-main-hover);
 		}
 	}
+
+    .btn-close {
+        background-color: transparent;
+        border: none;
+        height: fit-content;
+
+        i {
+            font-size: 2.5rem;
+            color: white;
+            transition: all .3s ease;
+
+            &:hover {
+                color: rgb(224, 224, 224);
+            }
+        }
+    }
+
+    .container-top {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>

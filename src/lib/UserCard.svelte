@@ -21,6 +21,7 @@
 <style lang="scss">
 	a {
 		text-decoration: none;
+		padding: 0 2rem;
 	}
 
 	p {

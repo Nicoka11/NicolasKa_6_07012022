@@ -11,7 +11,7 @@
 			setPostId(media)
 		}}
 	>
-		<img src={`../static/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+		<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
 	</div>
 	<div class="info">
 		<p>{media.title}</p>

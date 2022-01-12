@@ -1,14 +1,15 @@
 <script>
+	import { userMedia } from '../store';
 	import { fly } from 'svelte/transition';
-	export let mediaList, toggleLightBox, postId
+	export let toggleLightBox, postId
 
-	let index = mediaList.findIndex(media => media.id === postId);
+	let index = $userMedia.findIndex(media => media.id === postId);
 
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
 			index -= 1;
 		}
-		if (direction === 'next' && index < mediaList.length - 1) {
+		if (direction === 'next' && index < $userMedia.length - 1) {
 			index += 1;
 		}
 	}
@@ -20,7 +21,7 @@
 			<i class="fas fa-chevron-left" />
 		</button>
 		<div class="viewport">
-			{#each mediaList as media, i}
+			{#each $userMedia as media, i}
 				<div class="content" style={`transform: translateX(${(i - index) * (800 + 10)}px)`}>
 					<div class="img-container">
 						<img src={`/content/${media.image}`} alt={media.title} />
@@ -52,6 +53,7 @@
 		left: 0;
 		background-color: white;
 		z-index: 100;
+		overflow: hidden;
 	}
 	button {
 		width: 5rem;
@@ -101,7 +103,7 @@
 
 		.img-container {
 			height: 97%;
-			width: fit-content;
+			width: 100%;
 			margin: 0 auto;
 		}
 
@@ -114,6 +116,7 @@
 
 		.img-title {
 			color: var(--c-main);
+			margin-top: .4rem;
 		}
 	}
 </style>
