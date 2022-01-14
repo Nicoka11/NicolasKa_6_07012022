@@ -18,7 +18,9 @@
     <div class="container-top">
         <h1>Contactez-moi<br />{user.name}</h1>
         <button class="btn-close" on:click={toggleContactForm}>
-            <i class="fas fa-times"></i>
+            <span class="material-icons">
+				close
+				</span>
         </button>
     </div>
 	<form on:submit|preventDefault={formSubmit}>
@@ -64,7 +66,7 @@
         border: none;
         height: fit-content;
 
-        i {
+        span {
             font-size: 2.5rem;
             color: white;
             transition: all .3s ease;

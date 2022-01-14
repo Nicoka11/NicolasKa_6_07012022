@@ -1,9 +1,9 @@
 <script>
 	import { userMedia } from '../store';
 	import { fly } from 'svelte/transition';
-	export let toggleLightBox, postId
+	export let toggleLightBox, postId;
 
-	let index = $userMedia.findIndex(media => media.id === postId);
+	let index = $userMedia.findIndex((media) => media.id === postId);
 
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
@@ -18,7 +18,9 @@
 <div class="container" in:fly={{ opacity: 1, y: 0 }} out:fly={{ opacity: 0, y: -40 }}>
 	<div class="lightbox">
 		<button class="arrow-previous" on:click={() => changeIndex('previous')}>
-			<i class="fas fa-chevron-left" />
+			<span class="material-icons">
+				chevron_left
+				</span>
 		</button>
 		<div class="viewport">
 			{#each $userMedia as media, i}
@@ -32,10 +34,12 @@
 		</div>
 		<div class="right-control">
 			<button class="exit-btn" on:click={toggleLightBox}>
-				<i class="fas fa-times" />
+				<span class="material-icons"> close </span>
 			</button>
 			<button class="arrow-next" on:click={() => changeIndex('next')}>
-				<i class="fas fa-chevron-right" />
+				<span class="material-icons">
+					chevron_right
+					</span>
 			</button>
 		</div>
 	</div>
@@ -64,11 +68,18 @@
 		padding: 0;
 
 		&:hover {
-			background-color: rgba(0, 0, 0, 0.1);
+			background-color: rgba(75, 5, 5, 0.03);
 		}
-		i {
-			font-size: 2rem;
+		span {
+			font-size: 3rem;
 			color: var(--c-main);
+		}
+	}
+
+	.arrow-previous,
+	.arrow-next {
+		span {
+			font-size: 4rem;
 		}
 	}
 	.right-control {
@@ -79,7 +90,6 @@
 	.exit-btn {
 		height: 5rem;
 	}
-
 
 	.lightbox {
 		display: flex;
@@ -116,7 +126,7 @@
 
 		.img-title {
 			color: var(--c-main);
-			margin-top: .4rem;
+			margin-top: 0.4rem;
 		}
 	}
 </style>

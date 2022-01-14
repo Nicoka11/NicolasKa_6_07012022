@@ -3,16 +3,15 @@
 </script>
 
 <div class="likes-count">
-    <p>{count}</p>
-    <div class="icon">
-        <i class="fas fa-heart" aria-label="likes"></i>
-    </div>
+	<p>{count}</p>
+	<span class="material-icons"> favorite </span>
 </div>
 
-<style>
-    .likes-count {
-        display: flex;
-        gap: .2rem;
-        cursor: pointer;
-    }
+<style lang="scss">
+	.likes-count {
+		display: flex;
+		gap: 0.3rem;
+		cursor: pointer;
+		align-items: center;
+	}
 </style>
