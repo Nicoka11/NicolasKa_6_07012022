@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { data, userMedia } from '../../store';
+	import { fade, fly } from 'svelte/transition';
 	import Sorting from '$lib/Sorting.svelte';
 	import UserDetails from '$lib/UserDetails.svelte';
 	import UserInfo from '$lib/UserInfo.svelte';
@@ -34,8 +35,10 @@
 		<LightBox {toggleLightBox} {postId} />
 	{/if}
 	{#if isContactFormOpen}
-		<div class="form-container" on:click={toggleContactForm}>
-			<ContactForm {user} {toggleContactForm} />
+		<div class="form-container" on:click={toggleContactForm} in:fade out:fade>
+			<div in:fade out:fly={{ y: -40 }}>
+				<ContactForm {user} {toggleContactForm} />
+			</div>
 		</div>
 	{/if}
 	<UserDetails {user} ctaClickHandler={toggleContactForm} />
@@ -67,6 +70,8 @@
 
 	.sorting {
 		display: flex;
+		align-items: center;
+		gap: 1rem;
 		margin-bottom: 1rem;
 	}
 </style>

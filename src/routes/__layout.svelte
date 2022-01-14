@@ -19,6 +19,8 @@
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	/>
+	<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
 </svelte:head>
 <Header />
 <slot />

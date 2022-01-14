@@ -34,7 +34,7 @@
 		margin-bottom: 1rem;
 		outline: none;
 		&:focus {
-			border: 1px solid var(--c-border);
+			outline: 1px solid var(--c-border);
 		}
 	}
 	textarea {
@@ -46,7 +46,7 @@
 		min-height: 10.6rem;
 		margin-bottom: 0.7rem;
 		&:hover {
-			border: 1px solid var(--c-border);
+			outline: 1px solid var(--c-border);
 		}
 	}
 
