@@ -3,34 +3,39 @@
 	export let media, toggleLightBox, setPostId;
 </script>
 
-<div class="post">
+<article aria-label="Post">
 	<div
 		class="content"
 		on:click={(e) => {
 			toggleLightBox();
-			setPostId(media)
+			setPostId(media);
 		}}
 	>
-		<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+		{#if media.image}
+			<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+		{:else}
+			<video src={`/content/${media.video}`}/>
+		{/if}
 	</div>
 	<div class="info">
-		<p>{media.title}</p>
-		<LikeCount count={media.likes} />
+		<p aria-label="Titre du post">{media.title}</p>
+		<LikeCount count={media.likes} liked={media.liked} increment />
 	</div>
-</div>
+</article>
 
 <style lang="scss">
-	.post {
+	article {
 		width: 21.875rem;
 	}
 	.content {
 		height: 18.75rem;
 		overflow: hidden;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.8rem;
 		border-radius: 5px;
 		cursor: pointer;
 
-		img {
+		img,
+		video {
 			height: 100%;
 			width: 100%;
 			object-fit: cover;
@@ -38,6 +43,7 @@
 	}
 	.info {
 		color: var(--c-main);
+		font-size: 1.1rem;
 		display: flex;
 		justify-content: space-between;
 	}

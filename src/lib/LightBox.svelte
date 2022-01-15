@@ -18,15 +18,17 @@
 <div class="container" in:fly={{ opacity: 1, y: 0 }} out:fly={{ opacity: 0, y: -40 }}>
 	<div class="lightbox">
 		<button class="arrow-previous" on:click={() => changeIndex('previous')}>
-			<span class="material-icons">
-				chevron_left
-				</span>
+			<span class="material-icons"> chevron_left </span>
 		</button>
 		<div class="viewport">
 			{#each $userMedia as media, i}
 				<div class="content" style={`transform: translateX(${(i - index) * (800 + 10)}px)`}>
 					<div class="img-container">
-						<img src={`/content/${media.image}`} alt={media.title} />
+						{#if media.image}
+							<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+						{:else}
+							<video src={`/content/${media.video}`} controls autoplay/>
+						{/if}
 					</div>
 					<p class="img-title">{media.title}</p>
 				</div>
@@ -37,9 +39,7 @@
 				<span class="material-icons"> close </span>
 			</button>
 			<button class="arrow-next" on:click={() => changeIndex('next')}>
-				<span class="material-icons">
-					chevron_right
-					</span>
+				<span class="material-icons"> chevron_right </span>
 			</button>
 		</div>
 	</div>
@@ -112,6 +112,8 @@
 		transition: all 0.6s cubic-bezier(0.16, 0.94, 0.57, 0.99);
 
 		.img-container {
+			display: flex;
+			align-items: center;
 			height: 97%;
 			width: 100%;
 			margin: 0 auto;
@@ -119,6 +121,12 @@
 
 		img {
 			height: 100%;
+			width: 100%;
+			object-fit: contain;
+			border-radius: 5px;
+		}
+		video {
+			height: auto;
 			width: 100%;
 			object-fit: contain;
 			border-radius: 5px;

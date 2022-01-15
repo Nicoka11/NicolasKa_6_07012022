@@ -69,10 +69,11 @@
         span {
             font-size: 2.5rem;
             color: white;
+			cursor: pointer;
             transition: all .3s ease;
 
             &:hover {
-                color: rgb(224, 224, 224);
+                color: var(--c-main);
             }
         }
     }

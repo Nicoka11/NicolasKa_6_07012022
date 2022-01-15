@@ -9,9 +9,17 @@
 	import LightBox from '$lib/LightBox.svelte';
 	import UserPostGrid from '$lib/UserPostGrid.svelte';
 
-	userMedia.set($data.media.filter((media) => media.photographerId == $page.params.slug));
+	userMedia.set(
+		$data.media
+			.filter((media) => media.photographerId == $page.params.slug)
+			.map((media) => {
+				return { ...media, liked: false };
+			})
+	);
 	let user = $data.photographers.filter((user) => user.id == $page.params.slug)[0];
-	let totalLikes = $userMedia.map((media) => media.likes).reduce((prev, current) => prev + current);
+	let totalLikes =
+		$userMedia.map((media) => media.likes).reduce((prev, current) => prev + current) +
+		$userMedia.map((media) => media.liked).filter((media) => media.liked).length;
 
 	let isContactFormOpen = false,
 		isLightBoxOpen = false,
@@ -47,10 +55,10 @@
 		<Sorting />
 	</div>
 	<UserPostGrid {toggleLightBox} {setPostId} />
-	<UserInfo likeCount={totalLikes} price={user.price} />
+	<UserInfo {totalLikes} price={user.price} />
 </main>
 
-<style>
+<style lang="scss">
 	.form-container {
 		display: flex;
 		justify-content: center;
@@ -72,6 +80,9 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
+		p {
+			font-weight: 700;
+		}
 	}
 </style>

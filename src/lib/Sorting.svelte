@@ -14,8 +14,8 @@
 		options.push(sortOption);
 		sortOption = e.target.innerHTML;
 		options = options.filter((option) => option !== sortOption);
-		sortMedia(sortOption);
 		toggleDropdown();
+		setTimeout(() => sortMedia(sortOption), 400);
 	}
 	//Sorting
 	const sortMedia = (option) => {
@@ -42,7 +42,12 @@
 
 <div class="dropdown-menu">
 	<button class="select" on:click={toggleDropdown}>
-		<p id="selected">{sortOption} <span class="material-icons" style={`transform: rotate(${dropdown ? -180 : 0}deg)`}> expand_more </span></p>
+		<p id="selected">
+			{sortOption}
+			<span class="material-icons" style={`transform: rotate(${dropdown ? -180 : 0}deg)`}>
+				expand_more
+			</span>
+		</p>
 	</button>
 	{#if dropdown}
 		<div class="options" in:fly={{ y: -30, x: 0 }} out:fly={{ y: -30, x: 0 }}>
@@ -71,7 +76,7 @@
 		align-items: center;
 
 		span {
-			transition: transform .4s ease
+			transition: transform 0.4s ease;
 		}
 	}
 	.select {
