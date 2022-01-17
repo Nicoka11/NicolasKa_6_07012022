@@ -19,7 +19,7 @@
 	</div>
 	<div class="info">
 		<p aria-label="Titre du post">{media.title}</p>
-		<LikeCount count={media.likes} liked={media.liked} increment />
+		<LikeCount mediaId={media.id} increment />
 	</div>
 </article>
 

@@ -17,9 +17,6 @@
 			})
 	);
 	let user = $data.photographers.filter((user) => user.id == $page.params.slug)[0];
-	let totalLikes =
-		$userMedia.map((media) => media.likes).reduce((prev, current) => prev + current) +
-		$userMedia.map((media) => media.liked).filter((media) => media.liked).length;
 
 	let isContactFormOpen = false,
 		isLightBoxOpen = false,
@@ -55,7 +52,7 @@
 		<Sorting />
 	</div>
 	<UserPostGrid {toggleLightBox} {setPostId} />
-	<UserInfo {totalLikes} price={user.price} />
+	<UserInfo price={user.price} />
 </main>
 
 <style lang="scss">

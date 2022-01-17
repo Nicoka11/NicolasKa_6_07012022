@@ -1,11 +1,15 @@
 <script>
+	import { userMedia } from '../store';
 	import LikeCount from './LikeCount.svelte';
 
-	export let totalLikes, price;
+	export let price;
+
+	$: totalLikes =
+		$userMedia.map((media) => media.likes).reduce((prev, current) => prev + current)
 </script>
 
 <div class="user-info">
-	<LikeCount count={totalLikes} />
+	<LikeCount {totalLikes} />
 	<p>{`${price}€ / jour`}</p>
 </div>
 
