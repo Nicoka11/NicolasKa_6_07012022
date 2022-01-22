@@ -1,6 +1,8 @@
 <script>
+	import { onMount } from 'svelte';
 	import InputText from './InputText.svelte';
 	export let user, toggleContactForm;
+	let formEl;
 
 	const formSubmit = () => {
 		console.log(formData);
@@ -20,6 +22,11 @@
 				break;
 		}
 	}
+
+	onMount(() => {
+		console.log(formEl.firstChild);
+		formEl.firstChild.focus();
+	});
 </script>
 
 <svelte:window on:keyup={(e) => keyEvent(e)} />
@@ -31,12 +38,12 @@
 			<span class="material-icons" aria-hidden="true"> close </span>
 		</button>
 	</div>
-	<form on:submit|preventDefault={formSubmit}>
-		<InputText label="Prénom" name="firstName" bind:value={formData.firstName}/>
+	<form on:submit|preventDefault={formSubmit} bind:this={formEl}>
+		<InputText label="Prénom" name="firstName" bind:value={formData.firstName} />
 		<InputText label="Nom" name="lastName" bind:value={formData.lastName} />
 		<InputText type="email" label="Email" name="email" bind:value={formData.email} />
 		<InputText type="textarea" label="Votre message" name="message" bind:value={formData.message} />
-		<input type="submit" value="Envoyer" aria-label="Send"/>
+		<input type="submit" value="Envoyer" aria-label="Send" />
 	</form>
 </div>
 

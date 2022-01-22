@@ -54,10 +54,10 @@
 			<ul class="list" role="listbox">
 				{#each options as option}
 					<div class="divider" />
-					<li on:click={changeSelection} role="option" tabindex="0">
-						<button>
+					<li on:click={changeSelection} role="option">
+						<button tabindex="0">
 							{option}
-						</button>
+						</button>	
 					</li>
 				{/each}
 			</ul>

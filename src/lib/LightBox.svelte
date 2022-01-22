@@ -2,6 +2,7 @@
 	import { userMedia } from '../store';
 	import { fly } from 'svelte/transition';
 	export let toggleLightBox, postId;
+	export let index = $userMedia.findIndex((media) => media.id === postId);
 
 	function keyEvent(e) {
 		switch (e.key) {
@@ -21,8 +22,6 @@
 		}
 	}
 
-	export let index = $userMedia.findIndex((media) => media.id === postId);
-
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
 			index -= 1;
@@ -35,7 +34,7 @@
 
 <svelte:window on:keyup={(e) => keyEvent(e)} />
 
-<div
+<section
 	class="container"
 	in:fly={{ opacity: 1, y: 0 }}
 	out:fly={{ opacity: 0, y: -40 }}
@@ -43,18 +42,34 @@
 	aria-label="image closeup view"
 >
 	<div class="lightbox">
-		<button class="arrow-previous" on:click={() => changeIndex('previous')} aria-label="Previous Image">
+		<button
+			class="arrow-previous"
+			on:click={() => changeIndex('previous')}
+			aria-label="Previous Image"
+		>
 			<span class="material-icons" aria-hidden="true"> chevron_left </span>
 		</button>
-		<div class="viewport">
+		<div class="viewport" aria-roledescription="carousel">
 			{#each $userMedia as media, i}
 				<div class="content" style={`transform: translateX(${(i - index) * (800 + 10)}px)`}>
 					<div class="img-container">
 						{#if media.image}
-							<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+							<img
+								src={`/content/${media.image}`}
+								alt={media.title}
+								loading="lazy"
+								id={media.id}
+								aria-roledescription="slide"
+							/>
 						{:else}
 							<!-- svelte-ignore a11y-media-has-caption -->
-							<video src={`/content/${media.video}`} alt={media.title} controls autoplay />
+							<video
+								src={`/content/${media.video}`}
+								alt={media.title}
+								controls
+								autoplay
+								aria-roledescription="slide"
+							/>
 						{/if}
 					</div>
 					<p class="img-title">{media.title}</p>
@@ -70,7 +85,7 @@
 			</button>
 		</div>
 	</div>
-</div>
+</section>
 
 <style lang="scss">
 	.container {
@@ -149,13 +164,13 @@
 		img {
 			height: 100%;
 			width: 100%;
-			object-fit: contain;
+			object-fit: cover;
 			border-radius: 5px;
 		}
 		video {
-			height: auto;
+			height: 100%;
 			width: 100%;
-			object-fit: contain;
+			object-fit: cover;
 			border-radius: 5px;
 		}
 
