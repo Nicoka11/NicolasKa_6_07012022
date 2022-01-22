@@ -13,5 +13,14 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-<Header />
-<slot />
+<div class="app-container">
+	<Header />
+	<slot />
+</div>
+
+<style>
+	.app-container {
+		width: max-content;
+		margin: 0 auto;
+	}
+</style>

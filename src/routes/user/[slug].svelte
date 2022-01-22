@@ -41,7 +41,7 @@
 	{/if}
 	{#if isContactFormOpen}
 		<div class="form-container" on:click={toggleContactForm} in:fade out:fade>
-			<div in:fade out:fly={{ y: -40 }}>
+			<div in:fade out:fly={{ y: -40 }} role="dialog">
 				<ContactForm {user} {toggleContactForm} />
 			</div>
 		</div>

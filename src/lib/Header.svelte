@@ -15,7 +15,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
-		margin: 2rem 6.25rem;
+		margin: 2rem 0;
 	}
 	img {
 		width: 12.5rem;

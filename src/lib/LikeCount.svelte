@@ -18,7 +18,7 @@
 </script>
 
 {#if increment}
-	<button class:isLiked class="likes-count" on:click={onLike}>
+	<button class:isLiked class="likes-count clickable" on:click={onLike}>
 		<p>{media.likes}</p>
 		<span class="material-icons"> favorite </span>
 	</button>
@@ -33,13 +33,16 @@
 	.likes-count {
 		display: flex;
 		gap: 0.3rem;
-		cursor: pointer;
 		align-items: center;
 		border: none;
 		outline: none;
 		color: inherit;
 		background-color: inherit;
 		font-size: inherit;
+	}
+
+	.clickable {
+		cursor: pointer;
 	}
 
 	.isLiked {
