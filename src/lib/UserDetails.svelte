@@ -3,7 +3,7 @@
 	export let user, ctaClickHandler;
 </script>
 
-<div class="user-details">
+<div class="user-details" aria-hidden="true" >
 	<div class="description">
 		<h1 class="name">{user.name}</h1>
 		<p class="location">{`${user.city}, ${user.country}`}</p>

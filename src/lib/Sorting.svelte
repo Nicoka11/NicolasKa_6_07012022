@@ -17,7 +17,7 @@
 		toggleDropdown();
 		setTimeout(() => sortMedia(sortOption), 400);
 	}
-	//Sorting
+	//Sorting logic
 	const sortMedia = (option) => {
 		switch (option) {
 			case 'Popularité':
@@ -41,7 +41,7 @@
 </script>
 
 <div class="dropdown-menu">
-	<button class="select" on:click={toggleDropdown}>
+	<button class="select" on:click={toggleDropdown} aria-haspopup="listbox" aria-expanded="true">
 		<p id="selected">
 			{sortOption}
 			<span class="material-icons" style={`transform: rotate(${dropdown ? -180 : 0}deg)`}>
@@ -51,17 +51,32 @@
 	</button>
 	{#if dropdown}
 		<div class="options" in:fly={{ y: -30, x: 0 }} out:fly={{ y: -30, x: 0 }}>
-			<ul class="list">
+			<ul class="list" role="listbox">
 				{#each options as option}
 					<div class="divider" />
-					<li on:click={changeSelection}>{option}</li>
+					<li on:click={changeSelection} role="option" tabindex="0">
+						<button>
+							{option}
+						</button>
+					</li>
 				{/each}
 			</ul>
 		</div>
 	{/if}
 </div>
+<div class="close-dropdown" class:display-none={!dropdown} on:click={toggleDropdown} />
 
 <style lang="scss">
+	.display-none {
+		display: none;
+	}
+	.close-dropdown {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
 	.dropdown-menu {
 		position: relative;
 		color: white;
@@ -74,6 +89,7 @@
 		width: 100%;
 		justify-content: space-between;
 		align-items: center;
+		font-weight: 600;
 
 		span {
 			transition: transform 0.4s ease;
@@ -102,7 +118,20 @@
 
 		li {
 			padding-left: 0.9rem;
-			cursor: pointer;
+			font-weight: 600;
+
+			button {
+				border-color: transparent;
+				border-width: 0;
+				padding: 0;
+				font-weight: inherit;
+				color: inherit;
+				background-color: inherit;
+				font-size: inherit;
+				width: 100%;
+				text-align: left;
+				cursor: pointer;
+			}
 		}
 	}
 

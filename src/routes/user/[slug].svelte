@@ -35,7 +35,7 @@
 	};
 </script>
 
-<main>
+<main class:stop-scroll={isLightBoxOpen}>
 	{#if isLightBoxOpen}
 		<LightBox {toggleLightBox} {postId} />
 	{/if}
@@ -56,6 +56,10 @@
 </main>
 
 <style lang="scss">
+	.stop-scroll {
+		height: 80vh;
+		overflow-y: hidden;
+	}
 	.form-container {
 		display: flex;
 		justify-content: center;

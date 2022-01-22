@@ -4,9 +4,9 @@
 </script>
 
 <article aria-label="Post">
-	<div
+	<button
 		class="content"
-		on:click={(e) => {
+		on:click={() => {
 			toggleLightBox();
 			setPostId(media);
 		}}
@@ -14,9 +14,10 @@
 		{#if media.image}
 			<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
 		{:else}
-			<video src={`/content/${media.video}`}/>
+			<!-- svelte-ignore a11y-media-has-caption -->
+			<video src={`/content/${media.video}`} alt={media.title} />
 		{/if}
-	</div>
+	</button>
 	<div class="info">
 		<p aria-label="Titre du post">{media.title}</p>
 		<LikeCount mediaId={media.id} increment />
@@ -27,11 +28,19 @@
 	article {
 		width: 21.875rem;
 	}
+
 	.content {
 		height: 18.75rem;
 		overflow: hidden;
 		margin-bottom: 0.8rem;
 		border-radius: 5px;
+		border-color: transparent;
+		border-width: 0;
+		padding: 0;
+		color: inherit;
+		background-color: inherit;
+		font-size: inherit;
+		width: 100%;
 		cursor: pointer;
 
 		img,

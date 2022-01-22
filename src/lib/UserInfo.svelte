@@ -19,7 +19,7 @@
         align-items: center;
 		position: fixed;
 		bottom: 0;
-		right: 5rem;
+		right: 2rem;
 		padding: 1rem;
 		background-color: var(--c-main-light);
 		border-radius: 5px 5px 0 0;

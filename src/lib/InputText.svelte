@@ -34,7 +34,7 @@
 		margin-bottom: 1rem;
 		outline: none;
 		&:focus {
-			outline: 1px solid var(--c-border);
+			outline: 2px solid var(--c-border);
 		}
 	}
 	textarea {

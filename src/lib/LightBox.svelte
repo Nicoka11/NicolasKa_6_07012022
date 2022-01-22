@@ -3,7 +3,25 @@
 	import { fly } from 'svelte/transition';
 	export let toggleLightBox, postId;
 
-	let index = $userMedia.findIndex((media) => media.id === postId);
+	function keyEvent(e) {
+		switch (e.key) {
+			case 'ArrowRight':
+				if (index < $userMedia.length - 1) {
+					index += 1;
+				}
+				break;
+			case 'ArrowLeft':
+				if (index > 0) {
+					index -= 1;
+				}
+				break;
+			case 'Escape':
+				toggleLightBox();
+				break;
+		}
+	}
+
+	export let index = $userMedia.findIndex((media) => media.id === postId);
 
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
@@ -15,10 +33,18 @@
 	}
 </script>
 
-<div class="container" in:fly={{ opacity: 1, y: 0 }} out:fly={{ opacity: 0, y: -40 }}>
+<svelte:window on:keyup={(e) => keyEvent(e)} />
+
+<div
+	class="container"
+	in:fly={{ opacity: 1, y: 0 }}
+	out:fly={{ opacity: 0, y: -40 }}
+	on:keydown={(e) => keyEvent(e)}
+	aria-label="image closeup view"
+>
 	<div class="lightbox">
-		<button class="arrow-previous" on:click={() => changeIndex('previous')}>
-			<span class="material-icons"> chevron_left </span>
+		<button class="arrow-previous" on:click={() => changeIndex('previous')} aria-label="Previous Image">
+			<span class="material-icons" aria-hidden="true"> chevron_left </span>
 		</button>
 		<div class="viewport">
 			{#each $userMedia as media, i}
@@ -27,7 +53,8 @@
 						{#if media.image}
 							<img src={`/content/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
 						{:else}
-							<video src={`/content/${media.video}`} controls autoplay/>
+							<!-- svelte-ignore a11y-media-has-caption -->
+							<video src={`/content/${media.video}`} alt={media.title} controls autoplay />
 						{/if}
 					</div>
 					<p class="img-title">{media.title}</p>
@@ -35,11 +62,11 @@
 			{/each}
 		</div>
 		<div class="right-control">
-			<button class="exit-btn" on:click={toggleLightBox}>
-				<span class="material-icons"> close </span>
+			<button class="exit-btn" on:click={toggleLightBox} aria-label="Close dialog">
+				<span class="material-icons" aria-hidden="true"> close </span>
 			</button>
-			<button class="arrow-next" on:click={() => changeIndex('next')}>
-				<span class="material-icons"> chevron_right </span>
+			<button class="arrow-next" on:click={() => changeIndex('next')} aria-label="Next Image">
+				<span class="material-icons" aria-hidden="true"> chevron_right </span>
 			</button>
 		</div>
 	</div>
