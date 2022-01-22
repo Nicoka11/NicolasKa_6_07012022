@@ -1,19 +1,20 @@
 <script>
 	import { userMedia } from '../store';
 	export let increment = false,
-		mediaId, totalLikes = null;
+		mediaId,
+		totalLikes = null;
 
 	let isLiked = false;
 
-	let mediaIndex = $userMedia.findIndex((media) => media.id == mediaId);
-	let media = $userMedia.find((media) => media.id == mediaId);
+	$: mediaIndex = $userMedia.findIndex((media) => media.id == mediaId);
+	$: media = $userMedia.find((media) => media.id == mediaId);
 
 	function onLike() {
 		let medias = [...$userMedia];
 		isLiked ? media.likes-- : media.likes++;
-		isLiked = !isLiked
+		isLiked = !isLiked;
 		medias[mediaIndex] = media;
-		userMedia.set(medias)
+		userMedia.set(medias);
 	}
 </script>
 

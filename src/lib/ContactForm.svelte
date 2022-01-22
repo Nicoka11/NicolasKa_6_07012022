@@ -15,14 +15,12 @@
 </script>
 
 <div class="form" on:click|stopPropagation={() => {}}>
-    <div class="container-top">
-        <h1>Contactez-moi<br />{user.name}</h1>
-        <button class="btn-close" on:click={toggleContactForm}>
-            <span class="material-icons">
-				close
-				</span>
-        </button>
-    </div>
+	<div class="container-top">
+		<h1>Contactez-moi<br />{user.name}</h1>
+		<button class="btn-close" on:click={toggleContactForm}>
+			<span class="material-icons"> close </span>
+		</button>
+	</div>
 	<form on:submit|preventDefault={formSubmit}>
 		<InputText label="Prénom" name="firstName" bind:value={formData.firstName} />
 		<InputText label="Nom" name="lastName" bind:value={formData.lastName} />
@@ -61,25 +59,25 @@
 		}
 	}
 
-    .btn-close {
-        background-color: transparent;
-        border: none;
-        height: fit-content;
+	.btn-close {
+		background-color: transparent;
+		border: none;
+		height: fit-content;
 
-        span {
-            font-size: 2.5rem;
-            color: white;
+		span {
+			font-size: 2.5rem;
+			color: white;
 			cursor: pointer;
-            transition: all .3s ease;
+			transition: all 0.3s ease;
 
-            &:hover {
-                color: var(--c-main);
-            }
-        }
-    }
+			&:hover {
+				color: var(--c-main);
+			}
+		}
+	}
 
-    .container-top {
-        display: flex;
-        justify-content: space-between;
-    }
+	.container-top {
+		display: flex;
+		justify-content: space-between;
+	}
 </style>
