@@ -5,11 +5,7 @@
 <a href="/user/{user.id}">
 	<article>
 		<div class="image">
-			<img
-				src={`/id/${user.portrait}`}
-				alt={`${user.name} profile picture`}
-				loading="lazy"
-			/>
+			<img src={`/id/${user.portrait}`} alt={`${user.name} profile picture`} loading="lazy" />
 		</div>
 		<h2 class="name">{user.name}</h2>
 		<p class="location">{`${user.city}, ${user.country}`}</p>
@@ -22,6 +18,15 @@
 	a {
 		text-decoration: none;
 		padding: 0 2rem;
+		width: 100%;
+		border-radius: 5px;
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: rgba(75, 5, 5, 0.03);
+		}
+		&:active {
+			background-color: rgba(75, 5, 5, 0.1);
+		}
 	}
 
 	p {

@@ -45,8 +45,8 @@
 		width: 100%;
 		min-height: 10.6rem;
 		margin-bottom: 0.7rem;
-		&:hover {
-			outline: 1px solid var(--c-border);
+		&:focus {
+			outline: 2px solid var(--c-border);
 		}
 	}
 

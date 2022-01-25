@@ -7,14 +7,10 @@
 	function keyEvent(e) {
 		switch (e.key) {
 			case 'ArrowRight':
-				if (index < $userMedia.length - 1) {
-					index += 1;
-				}
+				changeIndex('next');
 				break;
 			case 'ArrowLeft':
-				if (index > 0) {
-					index -= 1;
-				}
+				changeIndex('previous');
 				break;
 			case 'Escape':
 				toggleLightBox();
@@ -25,20 +21,21 @@
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
 			index -= 1;
+			console.log(index);
 		}
 		if (direction === 'next' && index < $userMedia.length - 1) {
 			index += 1;
+			console.log(index);
 		}
 	}
 </script>
 
-<svelte:window on:keyup={(e) => keyEvent(e)} />
+<svelte:window on:keydown={(e) => keyEvent(e)} />
 
 <section
 	class="container"
 	in:fly={{ opacity: 1, y: 0 }}
 	out:fly={{ opacity: 0, y: -40 }}
-	on:keydown={(e) => keyEvent(e)}
 	aria-label="image closeup view"
 >
 	<div class="lightbox">
@@ -55,7 +52,7 @@
 					<div class="img-container">
 						{#if media.image}
 							<img
-								src={`/content/${media.image}`}
+								src={`/compact/${media.image}`}
 								alt={media.title}
 								loading="lazy"
 								id={media.id}

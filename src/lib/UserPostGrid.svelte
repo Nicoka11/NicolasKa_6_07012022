@@ -1,7 +1,6 @@
 <script>
 	import { userMedia } from '../store';
 	import UserPost from './UserPost.svelte';
-
 	export let toggleLightBox, setPostId;
 </script>
 

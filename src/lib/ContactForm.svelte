@@ -24,7 +24,6 @@
 	}
 
 	onMount(() => {
-		console.log(formEl.firstChild);
 		formEl.firstChild.focus();
 	});
 </script>
