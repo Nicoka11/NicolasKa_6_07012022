@@ -19,12 +19,12 @@
 </script>
 
 {#if increment}
-	<button class:isLiked class="likes-count clickable" on:click={onLike} aria-describedby="likes number">
+	<button class:isLiked class="likes-count clickable" on:click={onLike} aria-label="likes">
 		<p>{media.likes}</p>
 		<span class="material-icons" aria-hidden="true"> favorite </span>
 	</button>
 {:else}
-	<div class="likes-count" aria-describedby="total likes number">
+	<div class="likes-count">
 		<p>{totalLikes}</p>
 		<span class="material-icons" aria-hidden="true"> favorite </span>
 	</div>

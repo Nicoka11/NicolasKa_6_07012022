@@ -30,9 +30,9 @@
 
 <svelte:window on:keyup={(e) => keyEvent(e)} />
 
-<div class="form" on:click|stopPropagation={() => {}}>
+<div class="form" aria-labelledby="contact-title" on:click|stopPropagation={() => {}}>
 	<div class="container-top" tabindex="0">
-		<h1>Contactez-moi<br />{user.name}</h1>
+		<h1 id="contact-title">Contactez-moi<br />{user.name}</h1>
 		<button class="btn-close" on:click={toggleContactForm} aria-label="Close Contact form">
 			<span class="material-icons" aria-hidden="true"> close </span>
 		</button>

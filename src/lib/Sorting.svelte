@@ -51,7 +51,7 @@
 	</button>
 	{#if dropdown}
 		<div class="options" in:fly={{ y: -30, x: 0 }} out:fly={{ y: -30, x: 0 }}>
-			<ul class="list" role="listbox">
+			<ul class="list" role="listbox" aria-activedescendant="true" aria-selected="true" aria-labelledby="order-by-label">
 				{#each options as option}
 					<div class="divider" />
 					<li on:click={changeSelection} role="option">

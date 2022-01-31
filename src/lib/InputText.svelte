@@ -7,20 +7,20 @@
 
 {#if type === 'text'}
 	<label>
-		<p>{label}</p>
-		<input type="text" {name} bind:value />
+		<p id={`${name}-label`}>{label}</p>
+		<input type="text" aria-labelledby={`${name}-label`} bind:value />
 	</label>
 {/if}
 {#if type === 'email'}
 	<label>
-		<p>{label}</p>
-		<input type="email" {name} bind:value />
+		<p id={`${name}-label`}>{label}</p>
+		<input type="email" aria-labelledby={`${name}-label`} {name} bind:value />
 	</label>
 {/if}
 {#if type === 'textarea'}
 	<label>
-		<p>{label}</p>
-		<textarea {name} bind:value />
+		<p id={`${name}-label`}>{label}</p>
+		<textarea {name} aria-labelledby={`${name}-label`} bind:value />
 	</label>
 {/if}
 

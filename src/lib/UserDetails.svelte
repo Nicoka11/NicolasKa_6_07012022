@@ -9,9 +9,9 @@
 		<p class="location">{`${user.city}, ${user.country}`}</p>
 		<p class="tagline">{user.tagline}</p>
 	</div>
-	<CtaButton value="Contactez-moi" clickHandler={ctaClickHandler} />
+	<CtaButton value="Contactez-moi" clickHandler={ctaClickHandler} aria="Contact Me" />
 	<div class="image">
-		<img src={`../../static/id/${user.portrait}`} alt={`${user.name} profile picture`} />
+		<img src={`../../static/id/${user.portrait}`} alt={user.name} />
 	</div>
 </section>
 

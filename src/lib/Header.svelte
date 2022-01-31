@@ -4,7 +4,7 @@
 
 <header>
 	<a href="/">
-		<img src="../static/logo.png" alt="logo" />
+		<img src="../static/logo.png" alt="Fisheye Home page" />
 	</a>
 	{#if $page.url.pathname === '/'}
 		<h1>Nos photographes</h1>

@@ -1,8 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
 	import { userMedia } from '../store';
 	import { fly } from 'svelte/transition';
 	export let toggleLightBox, postId;
 	export let index = $userMedia.findIndex((media) => media.id === postId);
+	let leftBtn;
 
 	function keyEvent(e) {
 		switch (e.key) {
@@ -21,13 +23,15 @@
 	function changeIndex(direction) {
 		if (direction === 'previous' && index > 0) {
 			index -= 1;
-			console.log(index);
 		}
 		if (direction === 'next' && index < $userMedia.length - 1) {
 			index += 1;
-			console.log(index);
 		}
 	}
+
+	onMount(() => {
+		leftBtn.focus();
+	});
 </script>
 
 <svelte:window on:keydown={(e) => keyEvent(e)} />
@@ -42,7 +46,8 @@
 		<button
 			class="arrow-previous"
 			on:click={() => changeIndex('previous')}
-			aria-label="Previous Image"
+			aria-label="Previous image"
+			bind:this={leftBtn}
 		>
 			<span class="material-icons" aria-hidden="true"> chevron_left </span>
 		</button>
@@ -77,7 +82,7 @@
 			<button class="exit-btn" on:click={toggleLightBox} aria-label="Close dialog">
 				<span class="material-icons" aria-hidden="true"> close </span>
 			</button>
-			<button class="arrow-next" on:click={() => changeIndex('next')} aria-label="Next Image">
+			<button class="arrow-next" on:click={() => changeIndex('next')} aria-label="Next image">
 				<span class="material-icons" aria-hidden="true"> chevron_right </span>
 			</button>
 		</div>

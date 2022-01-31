@@ -2,10 +2,10 @@
 	export let user;
 </script>
 
-<a href="/user/{user.id}">
+<a href="/user/{user.id}" aria-label={user.name}>
 	<article>
 		<div class="image">
-			<img src={`/id/${user.portrait}`} alt={`${user.name} profile picture`} loading="lazy" />
+			<img src={`/id/${user.portrait}`} alt="" loading="lazy" />
 		</div>
 		<h2 class="name">{user.name}</h2>
 		<p class="location">{`${user.city}, ${user.country}`}</p>

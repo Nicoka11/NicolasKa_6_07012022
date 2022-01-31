@@ -12,10 +12,10 @@
 		}}
 	>
 		{#if media.image}
-			<img src={`/compact/${media.image}`} alt={media.title} loading="lazy" id={media.id} />
+			<img src={`/compact/${media.image}`} alt={`${media.title}, closeup view`} loading="lazy" id={media.id} />
 		{:else}
 			<!-- svelte-ignore a11y-media-has-caption -->
-			<video src={`/content/${media.video}`} alt={media.title} />
+			<video src={`/content/${media.video}`} alt={`${media.title}, closeup view`} />
 		{/if}
 	</button>
 	<div class="info">

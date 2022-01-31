@@ -48,7 +48,7 @@
 	{/if}
 	<UserDetails {user} ctaClickHandler={toggleContactForm} />
 	<div class="sorting">
-		<p>Trier par</p>
+		<p id="order-by-label">Trier par</p>
 		<Sorting />
 	</div>
 	<UserPostGrid {toggleLightBox} {setPostId} />
