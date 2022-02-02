@@ -2,7 +2,7 @@
 
 ## Description
 
-I'm using Sveltekit for this project because it suited the accesibility requirements very well, and the structure of this project made it logical to use a Javascript Framework such as SvelteKit.
+I'm using Sveltekit for this project because it suited the accesibility requirements very well (follows the A11y guidelines), and the structure of this project made it logical to use a Javascript Framework such as SvelteKit.
 
 More infos on my personal notion page : https://opalescent-snarl-fde.notion.site/Projet-6-8f7e1c836a0c4c60b1a4bdb39b37cf87
 
