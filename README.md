@@ -1,6 +1,9 @@
-# create-svelte
+# Open Classrooms - project 6
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+## Description
+
+I'm using Sveltekit for this project because it suited the accesibility requirements very well, and the structure of this project made it logicalto use a Javascript Framework such as SvelteKit.
+More infos on my personal notion page : https://opalescent-snarl-fde.notion.site/Projet-6-8f7e1c836a0c4c60b1a4bdb39b37cf87
 
 ## Developing
 
@@ -20,5 +23,3 @@ Before creating a production version of your app, install an [adapter](https://k
 ```bash
 npm run build
 ```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
