@@ -23,6 +23,7 @@
 		padding: 1rem;
 		background-color: var(--c-main-light);
 		border-radius: 5px 5px 0 0;
+		font-weight: 700;
 	}
 
 	p {
