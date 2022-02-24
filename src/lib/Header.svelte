@@ -4,7 +4,7 @@
 
 <header>
 	<a href="/">
-		<img src="../static/logo.png" alt="Fisheye Home page" />
+		<img src="/static/logo.png" alt="Fisheye Home page" />
 	</a>
 	{#if $page.url.pathname === '/'}
 		<h1>Nos photographes</h1>
@@ -16,6 +16,7 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 2rem 0;
+		min-width: 75vw;
 	}
 	img {
 		width: 12.5rem;
